@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nuestro Casi Algo 💘</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* =========================
+   VARIABLES
+========================= */
+:root {
+    --primary: #ff4d6d;
+    --primary-soft: #ff7b94;
+    --dark-1: #0f0f14;
+    --dark-2: #1a1a25;
+    --glass: rgba(255,255,255,0.06);
+    --text-soft: rgba(255,255,255,0.75);
+}
+
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(-45deg, #0f0f14, #1a1a25, #111118, #1c1c2b);
+    background-size: 400% 400%;
+    animation: bgMove 18s ease infinite;
+    color: white;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Glow dinámico */
+body::before {
+    content: "";
+    position: absolute;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba(255,77,109,0.25), transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    filter: blur(90px);
+    z-index: 0;
+}
+
+/* =========================
+   SECCIONES
+========================= */
+.section {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    transition: all 1s ease;
+    z-index: 2;
+}
+
+.hidden {
+    opacity: 0;
+    transform: scale(0.95);
+    pointer-events: none;
+}
+
+/* =========================
+   CARD
+========================= */
+.card {
+    width: 100%;
+    max-width: 680px;
+    padding: 55px 45px;
+    background: var(--glass);
+    backdrop-filter: blur(25px);
+    border-radius: 28px;
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 40px 80px rgba(0,0,0,0.45);
+    text-align: center;
+    animation: fadeUp 1.2s ease;
+}
+
+h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 25px;
+}
+
+p {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: var(--text-soft);
+    min-height: 80px;
+    white-space: pre-line;
+}
+
+/* =========================
+   BOTONES
+========================= */
+.button-group {
+    margin-top: 35px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.primary-btn {
+    padding: 14px 34px;
+    border-radius: 40px;
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+    background: linear-gradient(135deg, var(--primary), #ff1e4d);
+    color: white;
+    transition: all 0.4s ease;
+    box-shadow: 0 10px 30px rgba(255,77,109,0.3);
+}
+
+.primary-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 45px rgba(255,77,109,0.6);
+}
+
+.secondary-btn {
+    padding: 14px 28px;
+    border-radius: 40px;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: transparent;
+    color: var(--text-soft);
+    cursor: pointer;
+}
+
+/* =========================
+   CONTADOR
+========================= */
+.counter-box {
+    margin-bottom: 35px;
+    padding: 25px;
+    border-radius: 20px;
+    background: rgba(255,77,109,0.08);
+    border: 1px solid rgba(255,77,109,0.2);
+}
+
+/* =========================
+   FINAL CINEMATOGRÁFICO
+========================= */
+.final-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    backdrop-filter: blur(6px);
+    opacity: 0;
+    transition: opacity 2s ease;
+    z-index: 1;
+}
+
+#page3.active .final-overlay {
+    opacity: 1;
+}
+
+.final-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 700px;
+    padding: 40px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 2s ease;
+}
+
+#page3.active .final-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.final-text {
+    font-size: 1.8rem;
+    line-height: 1.8;
+    margin-bottom: 30px;
+    white-space: pre-line;
+}
+
+.glow {
+    text-shadow: 0 0 20px rgba(255,77,109,0.6),
+                 0 0 40px rgba(255,77,109,0.4);
+}
+
+.final-date {
+    font-size: 0.9rem;
+    letter-spacing: 3px;
+    opacity: 0.6;
+}
+
+/* ANIMACIONES */
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(40px);}
+    to { opacity: 1; transform: translateY(0);}
+}
+
+@keyframes bgMove {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+
+</style>
+</head>
+<body>
+
+<!-- CAPÍTULO 1 -->
+<section id="page1" class="section">
+    <div class="card">
+        <h2>💘 Capítulo 1: Investigación</h2>
+        <p id="storyText"></p>
+        <div class="button-group">
+            <button id="nextBtn" class="primary-btn">Continuar</button>
+            <button id="musicBtn" class="secondary-btn">🎵 Música</button>
+        </div>
+    </div>
+</section>
+
+<!-- CAPÍTULO 2 -->
+<section id="page2" class="section hidden">
+    <div class="card">
+        <div class="counter-box" id="counter"></div>
+        <p id="letterText"></p>
+    </div>
+</section>
+
+<!-- FINAL -->
+<section id="page3" class="section hidden">
+    <div class="final-overlay"></div>
+    <div class="final-content">
+        <div id="finalText" class="final-text"></div>
+        <div class="final-date">14.02.2026</div>
+    </div>
+</section>
+
+<audio id="bgMusic" loop>
+    <source src="yatra.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+/* TYPEWRITER */
+function typeWriter(text, element, speed=35){
+    return new Promise(resolve=>{
+        element.textContent="";
+        let i=0;
+        const interval=setInterval(()=>{
+            element.textContent+=text.charAt(i);
+            i++;
+            if(i>=text.length){
+                clearInterval(interval);
+                resolve();
+            }
+        },speed);
+    });
+}
+
+/* HISTORIA */
+const steps=[
+"Se detectó algo diferente el 3 de enero...",
+"Molestarse se volvió costumbre.",
+"Ser tiernos también.",
+"Actuar como si nada… nuestro talento especial.",
+"Creo que esto no es casualidad.",
+"Es un casi algo.",
+"Pero uno que se siente diferente.",
+"Y si soy honesto...",
+"Me gusta cómo me haces sentir."
+];
+
+let index=0;
+const storyText=document.getElementById("storyText");
+const nextBtn=document.getElementById("nextBtn");
+
+nextBtn.addEventListener("click",async()=>{
+    if(index<steps.length){
+        nextBtn.disabled=true;
+        await typeWriter(steps[index],storyText);
+        index++;
+        nextBtn.disabled=false;
+    }else{
+        document.getElementById("page1").classList.add("hidden");
+        document.getElementById("page2").classList.remove("hidden");
+        startLetter();
+    }
+});
+
+/* CONTADOR */
+function updateCounter(){
+    const startDate=new Date("2026-01-03T00:00:00");
+    const now=new Date();
+    const diff=now-startDate;
+
+    const days=Math.floor(diff/(1000*60*60*24));
+    const hours=Math.floor(diff/(1000*60*60))%24;
+    const minutes=Math.floor(diff/(1000*60))%60;
+    const seconds=Math.floor(diff/1000)%60;
+
+    document.getElementById("counter").innerHTML=`
+    <div style="margin-bottom:15px;opacity:0.7;">Desde que empezó esta historia 💕</div>
+    <div style="display:flex;justify-content:center;gap:25px;flex-wrap:wrap;">
+        <div><strong>${days}</strong><br><small>Días</small></div>
+        <div><strong>${hours}</strong><br><small>Horas</small></div>
+        <div><strong>${minutes}</strong><br><small>Min</small></div>
+        <div><strong>${seconds}</strong><br><small>Seg</small></div>
+    </div>`;
+}
+updateCounter();
+setInterval(updateCounter,1000);
+
+/* CARTA */
+const letter=`
+Desde ese día algo cambió.
+
+No sé cuándo empezamos a buscarnos,
+pero pasó.
+
+Me gusta tu forma de decir cosas pequeñas
+como si no supieras el efecto que tienen.
+
+No quiero apresurar lo que estamos construyendo.
+
+Pero si esto es un casi algo…
+
+quiero que el siguiente capítulo
+no tenga la palabra "casi".
+`;
+
+async function startLetter(){
+    await typeWriter(letter,document.getElementById("letterText"),30);
+    startFinalSequence();
+}
+
+/* FINAL CINEMATOGRÁFICO */
+function wait(ms){return new Promise(r=>setTimeout(r,ms));}
+
+async function startFinalSequence(){
+    await wait(1500);
+    document.getElementById("page2").style.opacity="0";
+    await wait(2000);
+    document.getElementById("page2").classList.add("hidden");
+
+    const page3=document.getElementById("page3");
+    page3.classList.remove("hidden");
+    page3.classList.add("active");
+
+    fadeOutMusic();
+
+    const finalText=document.getElementById("finalText");
+
+    finalText.innerHTML="A veces las mejores historias\nno empiezan con una promesa…";
+    await wait(2000);
+
+    finalText.innerHTML+="\n\nempiezan con una conexión.";
+    await wait(2000);
+
+    finalText.innerHTML+="\n\nY la nuestra…\ntodavía no tiene nombre.";
+    await wait(2000);
+
+    finalText.innerHTML+="\n\n<span class='glow'>Pero tiene algo.</span>";
+}
+
+/* MÚSICA */
+document.getElementById("musicBtn").addEventListener("click",()=>{
+    document.getElementById("bgMusic").play();
+});
+
+function fadeOutMusic(){
+    const music=document.getElementById("bgMusic");
+    let volume=music.volume;
+    const fade=setInterval(()=>{
+        if(volume>0.05){
+            volume-=0.05;
+            music.volume=volume;
+        }else{
+            music.volume=0;
+            clearInterval(fade);
+        }
+    },200);
+}
+
+</script>
+</body>
+</html>
